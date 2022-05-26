@@ -122,9 +122,6 @@
 /* Pop up */
 
 
-.S_sms_main .popup .S_sms_box textarea::placeholder {
-    color: #000;
-}
 
 .S_sms_main .popup .S_sms_box textarea {
     height: 70px;
@@ -299,6 +296,7 @@
 
 
 /* For Mobile Devices */
+
 @media(max-width:767px)
 {
 .S_sms_main .S_sms_box_container ul li {
@@ -310,3 +308,18 @@
     display: grid;
 }
 }
+/* For Mobile Devices */
+
+/* For Ipad Devices */
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .S_sms_main .popup {
+ 
+    width: 60%;
+}
+.S_sms_main .S_sms_box_container ul li {
+    width: 48%;
+}
+}
+
+/* For Ipad Devices */
