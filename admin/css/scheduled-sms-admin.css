@@ -2,3 +2,311 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+
+/* General CSS */
+
+.S_sms_main .S_sms_box_container ul li {
+    width: 31%;
+    background-color: #1e73be9e;
+    color: #fff;
+    border-radius: 4px;
+    margin: 1%;
+}
+
+.S_sms_main .S_sms_box {
+    padding: 18px;
+}
+
+.S_sms_main .S_sms_box button {
+    background-color: #ffffff;
+    border: 0;
+    padding: 3px 10px;
+    font-weight: 500;
+    line-height: 1.3;
+    border-radius: 4px;
+}
+
+.S_sms_main .S_sms_box_container ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+
+
+
+/* Header */
+
+.S_sms_main  .S_sms_box_header:after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: -15px;
+    background: radial-gradient(#92bfe8, #6ea2d2);
+    border-radius: 129px;
+}
+
+.S_sms_main .S_sms_box_header {
+    margin-bottom: 25px;
+    position: relative;
+}
+.S_sms_main .S_sms_box_header h3 {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.S_sms_main .S_sms_box_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header */
+
+
+/* Content */
+
+.S_sms_main .S_sms_box .S_sms_box_content span {
+    display: block;
+    padding: 5px 0px;
+}
+
+.S_sms_main .S_sms_box a.S_sms_box_edit {
+    padding: 2px 12px;
+    border: 4px solid #a2bcd4;
+    background-color: #ffffff;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.S_sms_main .S_sms_box  .pause-overlay:before {
+    content: "";
+    background-image: url(https://hub.matte.com.au/wp-content/plugins/scheduled-sms/pause.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 99;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    top: 35%;
+    bottom: 0;
+}
+.S_sms_main .S_sms_box .pause-overlay {
+    position: relative;
+}
+.S_sms_main .S_sms_box .pause-overlay:after {
+    content: "";
+    background-color: #6ea2d2c7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Content */
+
+
+
+/* Pop up */
+
+
+.S_sms_main .popup .S_sms_box textarea::placeholder {
+    color: #000;
+}
+
+.S_sms_main .popup .S_sms_box textarea {
+    height: 70px;
+}
+
+.S_sms_main .overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999999;
+}
+.S_sms_main .overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.S_sms_main .popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+
+.S_sms_main .popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.S_sms_main .popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.S_sms_main .popup .S_sms_box {
+    padding: 4px 8px;
+}
+
+.S_sms_main .popup .close:hover {
+  color: #000000;
+}
+.S_sms_main .popup a.S_sms_cinfirm_delete {
+    padding: 4px 20px;
+    border: 4px solid #6c94b8;
+    background-color: #6c94b8;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 15px;
+    display: block;
+    width: fit-content;
+    max-width: 140px;
+}
+
+.S_sms_main .popup h2 {
+    text-align: center;
+    display: block;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.S_sms_main .popup h1 {
+    font-size: 55px;
+    text-align: center;
+    font-weight: 900;
+}
+@media screen and (max-width: 700px){
+  .S_sms_main .popup{
+    width: 70%;
+  }
+}
+
+/* Pop Up */
+
+
+/* Footer */
+
+.S_sms_main .S_sms_main .S_sms_box_footer button {
+    padding: 6px 20px;
+}
+
+.S_sms_main .S_sms_box_footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 19px;
+}
+
+.S_sms_main .S_sms_box_footer button {
+    padding: 4px 20px;
+    border: 4px solid #a2bcd4;
+}
+
+.S_sms_main .S_sms_box_footer a.S_sms_box_delete {
+    padding: 4px 20px;
+    border: 4px solid #a2bcd4;
+    background-color: #ffffff;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+	border-radius:4px;
+}
+
+/* Footer */
+
+
+
+/* Add New */
+
+.S_sms_main .S_sms_add {
+    text-align: right;
+    font-size: 55px;
+    font-weight: 700;
+    color: #6ea2d2;
+}
+
+.S_sms_main .S_sms_add a {
+    text-decoration: none;
+    color: inherit;
+}
+.S_sms_main .S_sms_add a:focus {
+    box-shadow: none;
+}
+
+.S_sms_main .popup .S_sms_box h3 {
+    margin-top: 0;
+    font-size: 25px;
+}
+
+.S_sms_main .popup .S_sms_box input, .S_sms_main .popup .S_sms_box textarea, .S_sms_main .popup .S_sms_box select {
+    width: 100%;
+    border: 2px solid #b8bbbd;
+	    margin-bottom: 10px;
+}
+.S_sms_main .popup .S_sms_box_header {
+    margin-bottom: 0;
+}
+.S_sms_main .popup .S_sms_box_header:after
+{
+	display:none;
+}
+.S_sms_main  .S_sms_box_content .S_select_day_time {
+    display: flex;
+    column-gap: 15px;
+}
+.S_sms_main  .S_sms_box_content .S_select_day_time .S_select_time {
+    width: 40%;
+}
+
+.S_sms_main  .S_sms_box_content .S_select_day_time .S_select_day {
+    width: 60%;
+}
+
+/* Add New */
+
+
+
+/* For Mobile Devices */
+@media(max-width:767px)
+{
+.S_sms_main .S_sms_box_container ul li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.S_sms_main .S_sms_box_container ul {
+    display: grid;
+}
+}

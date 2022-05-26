@@ -99,5 +99,19 @@ class Scheduled_Sms_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/scheduled-sms-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	
+	public function co_s_sms_admin_menu(){
+		add_menu_page( 
+			__( 'Scheduled SMS' ),
+			'Scheduled SMS',
+			'manage_options',
+			'ssms_schedule_sms',
+			array($this, 'ssms_schedule_sms_callback')
+		); 
+	}
+	
+	public function ssms_schedule_sms_callback(){
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/scheduled-sms-admin-display.php';
+	}
 
 }
