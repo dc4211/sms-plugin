@@ -51,7 +51,7 @@ class Scheduled_Sms_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		//$this->insert_new_sheduled_sms();
 	}
 
 	/**
@@ -112,6 +112,13 @@ class Scheduled_Sms_Admin {
 	
 	public function ssms_schedule_sms_callback(){
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/scheduled-sms-admin-display.php';
+	}
+	
+	public function insert_new_sheduled_sms(){
+		
+		
+		echo "insert new sheduled sms";
+		
 	}
 
 }
