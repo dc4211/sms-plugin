@@ -52,7 +52,7 @@ class Scheduled_Sms_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->hooks();
-		//$this->shedule_sms();
+		$this->shedule_sms();
 	}
 
 	/**
@@ -67,8 +67,34 @@ class Scheduled_Sms_Admin {
 		//add_action('wp_ajax_insert_sheduled_sms',array($this, 'insert_sheduled_sms'));
 		//add_action('wp_ajax_edit_sms',array($this, 'ajax_edit_sheduled_sms'));
 		add_action('wp_ajax_pause_sheduled_sms',array($this, 'ajax_pause_sheduled_sms'));
-
+		add_filter( 'cron_schedules',array($this,'custom_recurrence' ));
+		add_action( 'my_hourly_event', array($this,'do_this_hourly' ));
+		add_action( 'init', array($this,'sheduled_time' ));
 	}
+	
+	
+	
+	
+	public function custom_recurrence( $schedules ) {
+	   $schedules['per_minute'] = array(
+		   'interval' => 60,
+		   'display' => __( 'One Minute' )
+	   );
+	   return $schedules;
+	} 
+	
+	public function sheduled_time() {
+		wp_schedule_event( time(), 'per_minute', 'my_hourly_event' );
+	}
+	 
+	function do_this_hourly() {
+		// do something 
+		echo "hello world!";
+		header("Refresh: $sec; url=$page");
+		die();
+	}
+	
+	
 	
 	
 	
@@ -372,8 +398,7 @@ class Scheduled_Sms_Admin {
 	
 	
 	public function shedule_sms(){
-		
-		$current_time = date('h:i A');
+		$current_time = date('h:i');
 		$args = array(
 				'post_type'  => 'sheduled_sms',
 				'meta_query' => array(
@@ -382,7 +407,7 @@ class Scheduled_Sms_Admin {
 						'value' => 1,
 					),
 					array(
-						'key'	=>	'msg_time',
+						'key'   => 'msg_time',
 						'value' => $current_time,
 					)
 				)
@@ -395,9 +420,11 @@ class Scheduled_Sms_Admin {
 				$contact_detail = $this->get_phoneNo_by_contact($val->contact_id);
 				foreach($contact_detail as $contact_val){
 					$primary_number = $contact_val->meta_value;
+					
 				}
 			}
 		}
+		
 	}
 	
 	
@@ -445,10 +472,6 @@ class Scheduled_Sms_Admin {
 		// Send email
 		wp_mail($args['email'], 'Renew Your Coupon Now!', $text, $h);
 	}*/
-	
-	
-	
-	
 	
 	
 	

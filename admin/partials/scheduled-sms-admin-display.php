@@ -20,6 +20,7 @@
             <ul>
 		<?php 
 			
+			
 			$results = $this->get_sheduled_sms();
 			
 			 foreach($results as $val){
@@ -36,6 +37,9 @@
 					$pause = 'pause-overlay';
 					$status_btn = "Resume";
 				}
+				
+				
+				
 			?>
 			
                <li>
@@ -188,7 +192,7 @@
                   <!--- Content End --->
                   <!--- Footer Start ---> 
                   <div class="S_sms_box_footer">
-                     <button id="addItem" class="S_sms_box_add" href="javascript:void(0)" onclick="addItem();">Add</button>
+                     <button id="addItem" class="S_sms_box_add">Add</button>
                      <a class="S_sms_box_delete" href="#">Close</a>
                   </div>
                   <!--- Footer End --->
@@ -202,14 +206,3 @@
    </div>
 </div>
 
-
-<script>
-function addItem(){
-	   //alert('submit');
-	  // jQuery('.S_sms_box_delete').trigger('click')
-	  // jQuery(".S_sms_box_delete").click();
-	   //jQuery("#new_sms_form").submit();
-	   //location.reload();
-	   
-   }
-</script>
