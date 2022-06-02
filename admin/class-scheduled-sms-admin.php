@@ -67,32 +67,94 @@ class Scheduled_Sms_Admin {
 		//add_action('wp_ajax_insert_sheduled_sms',array($this, 'insert_sheduled_sms'));
 		//add_action('wp_ajax_edit_sms',array($this, 'ajax_edit_sheduled_sms'));
 		add_action('wp_ajax_pause_sheduled_sms',array($this, 'ajax_pause_sheduled_sms'));
-		add_filter( 'cron_schedules',array($this,'custom_recurrence' ));
-		add_action( 'my_hourly_event', array($this,'do_this_hourly' ));
-		add_action( 'init', array($this,'sheduled_time' ));
+		
+		
+		///recursive event....
+		add_action('init',array( $this, 'shedule_event' ));
+		add_action('my_cloud_schedule_hook',array($this, 'print_code' ));
+		//add_filter('cron_schedules', array( $this, 'my_cron_schedules'));
+		add_filter( 'cron_schedules', array( $this,'custom_cron_job_recurrence' ));
 	}
 	
 	
-	
-	
-	public function custom_recurrence( $schedules ) {
-	   $schedules['per_minute'] = array(
-		   'interval' => 60,
-		   'display' => __( 'One Minute' )
-	   );
-	   return $schedules;
-	} 
-	
-	public function sheduled_time() {
-		wp_schedule_event( time(), 'per_minute', 'my_hourly_event' );
-	}
 	 
-	function do_this_hourly() {
-		// do something 
-		echo "hello world!";
-		header("Refresh: $sec; url=$page");
-		die();
+	
+	public function my_cron_schedules($schedules){
+		if(!isset($schedules["two_sec"])){
+			$schedules["two_sec"] = array(
+				'interval' => 1,
+				'display' => __('Once every 1 minutes'));
+		}
+		if(!isset($schedules["30min"])){
+			$schedules["30min"] = array(
+				'interval' => 30*60,
+				'display' => __('Once every 30 minutes'));
+		}
+		return $schedules;
 	}
+	
+	
+	public function shedule_event(){
+		wp_clear_scheduled_hook( 'my_cloud_schedule_hook' );
+	//if ( ! wp_next_scheduled( 'my_cloud_schedule_hook' ) ) {
+	//   
+	//  wp_schedule_event(time(), '10sec', 'my_cloud_schedule_hook');
+	//}
+	}
+	
+	
+	public function print_code(){
+		
+		$current_time = date('h:i');
+		
+			$msg_title = 'every 10 sec cron test';
+			$msg_day   = 'Monday';
+			$msg_time  = $current_time ;
+			$msg_tag   = 87;
+			$msg_body  = 'Here is the test for cron job!';
+			
+			$args = array(
+				'post_type' => 'sheduled_sms',
+				'post_status' => 'publish',
+				'post_title' => $msg_title,
+				'post_content' => $msg_body,
+				'meta_input'    => array(
+										'msg_day'   => $msg_day,
+										'msg_time'  => $current_time,
+										'msg_tag'   => $msg_tag,
+										'status'    => 0,
+										)
+		
+					);
+				 
+			$id = wp_insert_post( $args );
+			$page = $_SERVER['PHP_SELF'].'?page=ssms_schedule_sms';
+			$sec = "0";
+			header("Refresh: $sec; url=$page");
+		
+	}
+		
+	
+	public	function custom_cron_job_recurrence( $schedules ){
+			if(!isset($schedules['10sec']))
+			{
+				$schedules['10sec'] = array(
+					'display' => __( 'Every 10 Seconds', 'twentyfifteen' ),
+					'interval' => 10,
+				);
+			}
+			 
+			if(!isset($schedules['15sec']))
+			{
+				$schedules['15sec'] = array(
+				'display' => __( 'Every 15 Seconds', 'twentyfifteen' ),
+				'interval' => 15,
+				);
+			}
+			 
+			return $schedules;
+	}
+
 	
 	
 	
